@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using IrenioStadium.Domain.Entities;
+using IrenioStadium.Domain.ViewModels;
 
 namespace IrenioStadium.Domain.Services
 {
     public interface IJogadorApplicationService
     {
-        Jogador CriarJogador(Jogador jogador);
-        Jogador AtualizarJogador(Jogador jogador);
+        Jogador CriarJogador(CriarJogadorViewModel jogador);
+        Jogador AtualizarJogador(AtualizarJogadorViewModel jogador);
         void ExcluirJogador(Guid id);
-        IEnumerable<Jogador> ListarJogador(int skip, int take);
+        IEnumerable<Jogador> ListarJogador();
     }
 }

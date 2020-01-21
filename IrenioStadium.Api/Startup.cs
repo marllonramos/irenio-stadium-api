@@ -10,6 +10,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using IrenioStadium.Domain.Repositories;
+using IrenioStadium.Domain.Services;
+using IrenioStadium.Infra.Repositories;
+using IrenioStadium.Infra.Persistence.DataContexts;
+using IrenioStadium.ApplicationService.Services;
 
 namespace IrenioStadium.Api
 {
@@ -25,6 +30,12 @@ namespace IrenioStadium.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<IrenioStadiumDataContext>();
+            services.AddScoped<IrenioStadiumDataContext, IrenioStadiumDataContext>();
+
+            services.AddScoped<IJogadorRepository, JogadorRepository>();
+            services.AddScoped<IJogadorApplicationService, JogadorApplicationService>();
+
             services.AddControllers();
         }
 

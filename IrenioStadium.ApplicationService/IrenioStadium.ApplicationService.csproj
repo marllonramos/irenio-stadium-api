@@ -1,7 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\IrenioStadium.Domain\IrenioStadium.Domain.csproj" />
+    <ProjectReference Include="..\IrenioStadium.Infra\IrenioStadium.Infra.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
 </Project>
