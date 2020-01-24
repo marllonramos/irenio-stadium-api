@@ -32,15 +32,14 @@ namespace IrenioStadium.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IrenioStadiumDataContext>();
+            services.AddCors();
+            services.AddControllers();
 
+            services.AddDbContext<IrenioStadiumDataContext>();
             services.AddScoped<IrenioStadiumDataContext, IrenioStadiumDataContext>();
 
             services.AddScoped<IJogadorRepository, JogadorRepository>();
             services.AddScoped<IJogadorApplicationService, JogadorApplicationService>();
-
-            services.AddControllers();
-            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +52,11 @@ namespace IrenioStadium.Api
 
             app.UseHttpsRedirection();
 
-            app.UseCors(option => option.AllowAnyOrigin());
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
 
             app.UseRouting();
 
