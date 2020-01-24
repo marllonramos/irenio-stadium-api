@@ -17,13 +17,15 @@ namespace IrenioStadium.Api.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public Jogador Post([FromBody]CriarJogadorViewModel model)
         {
-            var branch = _service.CriarJogador(model);
-            return branch;
+            var jogador = _service.CriarJogador(model);
+            return jogador;
         }
 
         [HttpPut]
+        [Route("")]
         public Jogador Put([FromBody]AtualizarJogadorViewModel model)
         {
             var jogador = _service.AtualizarJogador(model);
@@ -38,6 +40,7 @@ namespace IrenioStadium.Api.Controllers
         }
 
         [HttpGet]
+        [Route("")]
         public IEnumerable<Jogador> Get()
         {
             return _service.ListarJogador();
