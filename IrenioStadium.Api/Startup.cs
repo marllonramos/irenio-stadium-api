@@ -15,6 +15,8 @@ using IrenioStadium.Domain.Services;
 using IrenioStadium.Infra.Repositories;
 using IrenioStadium.Infra.Persistence.DataContexts;
 using IrenioStadium.ApplicationService.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace IrenioStadium.Api
 {
@@ -31,6 +33,7 @@ namespace IrenioStadium.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<IrenioStadiumDataContext>();
+
             services.AddScoped<IrenioStadiumDataContext, IrenioStadiumDataContext>();
 
             services.AddScoped<IJogadorRepository, JogadorRepository>();
