@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IrenioStadium.Api.Controllers
 {
-    [Route("jogador")]
+    [Route("jogadores")]
     public class JogadorController : ControllerBase
     {
         private readonly IJogadorApplicationService _service;

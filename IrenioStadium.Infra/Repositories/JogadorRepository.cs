@@ -17,7 +17,7 @@ namespace IrenioStadium.Infra.Repositories
         }
         public void Criar(Jogador jogador)
         {
-            _context.Add(jogador);
+            _context.Jogadores.Add(jogador);
             _context.SaveChanges();
         }
         public void Atualizar(Jogador jogador)
@@ -29,7 +29,7 @@ namespace IrenioStadium.Infra.Repositories
         {
             var jogador = _context.Jogadores.Find(id);
             
-            _context.Remove(jogador);
+            _context.Jogadores.Remove(jogador);
             _context.SaveChanges();
         }
         public IEnumerable<Jogador> Listar()

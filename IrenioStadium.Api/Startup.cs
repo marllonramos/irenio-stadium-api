@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using IrenioStadium.Domain.Repositories;
 using IrenioStadium.Domain.Services;
 using IrenioStadium.Infra.Repositories;
+using IrenioStadium.Infra.Shared;
 using IrenioStadium.Infra.Persistence.DataContexts;
 using IrenioStadium.ApplicationService.Services;
 using Microsoft.EntityFrameworkCore;
@@ -27,11 +29,19 @@ namespace IrenioStadium.Api
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.Development.json");
+
+            Configuration = builder.Build();
+
             services.AddCors();
             services.AddControllers();
 
@@ -40,6 +50,8 @@ namespace IrenioStadium.Api
 
             services.AddScoped<IJogadorRepository, JogadorRepository>();
             services.AddScoped<IJogadorApplicationService, JogadorApplicationService>();
+
+            Settings.ConnectionString = $"{Configuration["ConnectionString"]}";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
