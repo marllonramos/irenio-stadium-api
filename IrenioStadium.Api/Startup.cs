@@ -51,7 +51,8 @@ namespace IrenioStadium.Api
             services.AddScoped<IJogadorRepository, JogadorRepository>();
             services.AddScoped<IJogadorApplicationService, JogadorApplicationService>();
 
-            Settings.ConnectionString = $"{Configuration["ConnectionString"]}";
+            Settings.ConnectionString = $"{Configuration["ConnectionString:connectionString"]}";
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
