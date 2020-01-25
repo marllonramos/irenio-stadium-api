@@ -35,12 +35,12 @@ namespace IrenioStadium.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile("appsettings.Development.json");
+            // var builder = new ConfigurationBuilder()
+            //     .SetBasePath(Directory.GetCurrentDirectory())
+            //     .AddJsonFile("appsettings.json")
+            //     .AddJsonFile("appsettings.Development.json");
 
-            Configuration = builder.Build();
+            // Configuration = builder.Build();
 
             services.AddCors();
             services.AddControllers();
@@ -51,8 +51,7 @@ namespace IrenioStadium.Api
             services.AddScoped<IJogadorRepository, JogadorRepository>();
             services.AddScoped<IJogadorApplicationService, JogadorApplicationService>();
 
-            Settings.ConnectionString = $"{Configuration["ConnectionString:connectionString"]}";
-            
+            // Settings.ConnectionString = $"{Configuration["ConnectionString:connectionString"]}";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
