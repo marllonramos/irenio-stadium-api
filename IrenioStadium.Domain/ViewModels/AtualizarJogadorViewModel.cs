@@ -2,7 +2,7 @@ using System;
 
 namespace IrenioStadium.Domain.ViewModels
 {
-    public class AtualizarJogadorViewModel
+    public class AtualizarJogadorViewModel : IViewModel
     {
         public Guid Id { get; set; }
         public string Nome { get; set; }
