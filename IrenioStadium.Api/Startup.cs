@@ -42,14 +42,18 @@ namespace IrenioStadium.Api
 
             // Configuration = builder.Build();
 
-            services.AddCors();
-            services.AddControllers();
+            // services.AddCors();
+
+            services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
 
             services.AddDbContext<IrenioStadiumDataContext>();
             services.AddScoped<IrenioStadiumDataContext, IrenioStadiumDataContext>();
 
             services.AddScoped<IJogadorRepository, JogadorRepository>();
             services.AddScoped<IJogadorApplicationService, JogadorApplicationService>();
+
+            services.AddControllers();
 
             // Settings.ConnectionString = $"{Configuration["ConnectionString:connectionString"]}";
         }
@@ -64,13 +68,13 @@ namespace IrenioStadium.Api
 
             app.UseHttpsRedirection();
 
+            app.UseRouting();
+
             app.UseCors(x => x
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
             );
-
-            app.UseRouting();
 
             app.UseAuthorization();
 

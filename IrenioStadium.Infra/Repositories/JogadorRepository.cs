@@ -28,13 +28,18 @@ namespace IrenioStadium.Infra.Repositories
         public void Excluir(Guid id)
         {
             var jogador = _context.Jogadores.Find(id);
-            
+
             _context.Jogadores.Remove(jogador);
             _context.SaveChanges();
         }
         public IEnumerable<Jogador> Listar()
         {
-            return _context.Jogadores.AsNoTracking().ToList();
+            return _context.Jogadores.AsNoTracking()
+                .OrderByDescending(x => x.JogadorDaPartida)
+                .ThenByDescending(x => x.Gol)
+                .ThenByDescending(x => x.Assistencia)
+                .ThenByDescending(x => x.HatTrick)
+                .ToList();
         }
     }
 }
