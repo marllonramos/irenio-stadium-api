@@ -41,5 +41,13 @@ namespace IrenioStadium.Infra.Repositories
                 .ThenByDescending(x => x.HatTrick)
                 .ToList();
         }
+
+        public Jogador ListarPorId(Guid id)
+        {
+            return _context.Jogadores
+                .Where(x => x.Id == id)
+                .AsNoTracking()
+                .FirstOrDefault();
+        }
     }
 }

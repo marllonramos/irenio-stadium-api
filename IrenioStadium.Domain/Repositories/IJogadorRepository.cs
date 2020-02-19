@@ -10,5 +10,6 @@ namespace IrenioStadium.Domain.Repositories
         void Atualizar(Jogador jogador);
         void Excluir(Guid id);
         IEnumerable<Jogador> Listar();
+        Jogador ListarPorId(Guid id);
     }
 }

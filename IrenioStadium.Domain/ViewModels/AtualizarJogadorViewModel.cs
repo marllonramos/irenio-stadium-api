@@ -11,5 +11,6 @@ namespace IrenioStadium.Domain.ViewModels
         public int JogadorDaPartida { get; set; }
         public int HatTrick { get; set; }
         public string Foto { get; set; }
+        public bool UpdateFoto { get; set; }
     }
 }

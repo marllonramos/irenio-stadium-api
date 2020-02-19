@@ -37,16 +37,23 @@ namespace IrenioStadium.ApplicationService.Services
         }
         public Jogador AtualizarJogador(AtualizarJogadorViewModel model)
         {
-            Jogador jogador;
+            Jogador jogador = _repository.ListarPorId(model.Id);
 
-            if (!String.IsNullOrEmpty(model.Foto))
+            if (model.UpdateFoto == true)
             {
-                FileUpload fileUpload = new FileUpload();
-                jogador = fileUpload.UploadPhotos(model);
+                if (!String.IsNullOrEmpty(model.Foto))
+                {
+                    FileUpload fileUpload = new FileUpload();
+                    jogador = fileUpload.UploadPhotos(model);
+                }
+                else
+                {
+                    jogador = new Jogador(model.Id, model.Nome, model.Gol, model.Assistencia, model.JogadorDaPartida, model.HatTrick, model.Foto);
+                }
             }
             else
             {
-                jogador = new Jogador(model.Id, model.Nome, model.Gol, model.Assistencia, model.JogadorDaPartida, model.HatTrick, model.Foto);
+                jogador = new Jogador(model.Id, model.Nome, model.Gol, model.Assistencia, model.JogadorDaPartida, model.HatTrick, jogador.Foto);
             }
 
             _repository.Atualizar(jogador);
@@ -59,6 +66,11 @@ namespace IrenioStadium.ApplicationService.Services
         public IEnumerable<Jogador> ListarJogador()
         {
             return _repository.Listar();
+        }
+
+        public Jogador ListarPorId(Guid id)
+        {
+            return _repository.ListarPorId(id);
         }
     }
 }

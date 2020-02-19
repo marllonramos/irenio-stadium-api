@@ -11,5 +11,6 @@ namespace IrenioStadium.Domain.Services
         Jogador AtualizarJogador(AtualizarJogadorViewModel jogador);
         void ExcluirJogador(Guid id);
         IEnumerable<Jogador> ListarJogador();
+        Jogador ListarPorId(Guid id);
     }
 }
